@@ -1,10 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { MyFirstController } from './controllers/my-first/my-first.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { ConsoleModule } from 'nestjs-console';
+import { BankAccount } from './models/bank-account.model';
+
+import { MyFirstController } from './controllers/my-first/my-first.controller';
+import { BankAccountController } from './controllers/bank-account/bank-account.controller';
+import { FixturesCommand } from './fixtures/fixtures.command';
 
 @Module({
   imports: [
@@ -17,9 +21,11 @@ import { ConsoleModule } from 'nestjs-console';
       username: process.env.TYPEORM_USERNAME,
       password: process.env.TYPEORM_PASSWORD,
       database: process.env.TYPEORM_DATABASE,
+      entities: [BankAccount],
     }),
+    TypeOrmModule.forFeature([BankAccount]),
   ],
-  controllers: [AppController, MyFirstController],
-  providers: [AppService],
+  controllers: [AppController, MyFirstController, BankAccountController],
+  providers: [AppService, FixturesCommand],
 })
 export class AppModule {}
