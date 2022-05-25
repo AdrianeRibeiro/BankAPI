@@ -71,23 +71,3 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
-
-nest generate controller controllers/bank-account
-58min
-sudo docker-compose exec app bash
-bash-5.0$ npm run typeorm entity:create -- src/models/bank-account
-
-{
-  "type": "postgres",
-  "host": "db",
-  "port": 5432,
-  "username": "postgres",
-  "password": "root",
-  "database": "nest",
-  "migrations": ["src/migrations/**/*.ts"],
-  "entities": ["src/**/*.model.ts"],
-  "cli": {
-    "migrationsDir": "src/migrations",
-    "entitiesDir": "src/models"
-  }
-}
